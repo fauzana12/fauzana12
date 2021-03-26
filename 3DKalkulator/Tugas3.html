@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Kalkulator</title>
+			<meta charset = "UTS-8">
+	</head>
+<body>
+	<table border align="center">
+		<tr>
+			<!--Image berasal dari mana ya guys :)-->
+			<td align="center"><img src= "Kalkulator.jpg" alt="">
+			</td>
+		</tr>
+	</table>
+
+	<script>
+		var nama;
+		var date = new Date();
+		var jam = date.getHours();
+
+		nama = window.prompt("Selamat Datang, Silahkan masukan nama anda: ");
+
+		if(jam < 12)
+			document.write("Selamat Pagi " + nama);
+
+		if(jam >= 12){
+			jam = jam-12 ;
+
+		if (jam < 6)
+			document.write("Selamat siang " + nama);
+
+		if (jam >= 6)
+			document.write("Selamat malam " + nama);
+		}
+
+	</script>
+	<br>
+	<br>
+	<p><h3>Mari mengitung volume dan luas permukaan dari silinder, kerucut, dan bola.</h3></p>
+	<br>
+
+	<!-- Perhitungan Silinder -->
+	<p><h1>SILINDER</p>
+	
+	<p>Masukkan jari-jari silinder : <input = type=" text" id ="jari"> M</p>
+	
+	<p>Masukan tinggi Silinder : <input type="text" id="tinggi"> M</p>
+	
+	<button id="hitung" style="margin-left: 450px; height: 10%;">Hitung!</button>
+	<br>
+	<h2><strong>Hasil Perhitungan</strong></h2>
+	
+	<p>Luas Permukaan : </p><p id="luassilinder">0</p>
+	<p>Volume : </p> <p id="volumesilinder">0</p>
+	<br>
+	<br>
+
+	<!-- Perhitungan Kerucut -->
+	<p><h1>KERUCUT</p>
+	
+	<p>Masukkan jari-jari kerucut <input = type=" text" id ="JKerucut"> M</p>
+	
+	<p>Masukan garis pelukis kerucut <input type="text" id="GPelukis"> M</p>
+	
+	<p>Masukan tinggi kerucut <input type="text" id="TKerucut"> M</p>
+	
+	<button id="HKerucut" style="margin-left: 500px; height: 10%;">Hitung!</button>
+	<br>
+	<h2><strong>Hasil Perhitungan</strong></h2>
+	<br>
+	<p>Luas Permukaan: </p> <p id="luaskerucut">0</p>
+	<br>
+	<p>Volume: </p> <p id="volumekerucut">0</p>
+	<br>
+	<br>
+
+	<!--Perhitungan Bola -->
+	<p><h1>BOLA</p>
+	<br>
+	<p>Masukkan jari-jari bola <input = type=" text" id ="JBola"> M</p>
+	<br>
+	<button id="HBola" style="margin-left: 500px; height: 10%;">Hitung!</button>
+	<br>
+	<h2><strong>Hasil Perhitungan</strong></h2>
+	<br>
+	<p>Luas Permukaan: </p> <p id="luasbola">0</p>
+	<br>
+	<p>Volume: </p> <p id="volumebola">0</p>
+	<script>
+		document.getElementById("hitung").onclick = silinder;
+		function silinder() {
+			var phi = 3.1415926536;
+			var r = document.getElementById("jari");
+			var t = document.getElementById("tinggi");
+			r = Number(r.value);
+			t = Number(t.value);
+			if (r < 1 || t < 1 || !/[0-9]/.test(r) || !/[0-9]/.test(t)) {
+				alert("Masukan angka yang benar!");
+			} else {
+				var silinderLuas = 2 * phi * r * (r + t);
+				document.getElementById("luassilinder").innerHTML = silinderLuas.toFixed(2);
+				var silinderVolume = phi * r * r * t;
+				document.getElementById("volumesilinder").innerHTML = silinderVolume.toFixed(2);
+			}
+		}
+	</script>
+	<script>
+		document.getElementById("HKerucut").onclick = kerucut;
+		function kerucut() {
+			var phi = 3.1415926536;
+			var r = document.getElementById("JKerucut");
+			var s = document.getElementById("GPelukis");
+			var t = document.getElementById("TKerucut");
+			r = Number(r.value);
+			s = Number(s.value);
+			t = Number(t.value);
+			if (r < 1 || s < 1 || t < 1 || !/[0-9]/.test(r) || !/[0-9]/.test(s) || !/[0-9]/.test(t)) {
+				alert("Masukan angka yang benar!");
+			} else {
+				var kerucutLuas = phi * r * (s + r);
+				document.getElementById("luaskerucut").innerHTML = kerucutLuas.toFixed(2);
+				var kerucutVolume = phi * r * r * t / 3;
+				document.getElementById("volumekerucut").innerHTML = kerucutVolume.toFixed(2);
+			}
+		}
+	</script>
+	<script>
+		document.getElementById("HBola").onclick = bola;
+		function bola() {
+			var phi = 3.1415926536;
+			var r = document.getElementById("JBola");
+			r = Number(r.value);
+			if (r < 1 || !/[0-9]/.test(r)) {
+				alert("Masukan angka yang benar!");
+			} else {
+				var bolaLuas = 4 * phi * r * r * r / 3;
+				document.getElementById("luasbola").innerHTML = bolaLuas.toFixed(2);
+				var bolaVolume = 4 * phi * r * r;
+				document.getElementById("volumebola").innerHTML = bolaVolume.toFixed(2);
+			}
+		}
+	</script>
+
+
+</body>
+</html>
